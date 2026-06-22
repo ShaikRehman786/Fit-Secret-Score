@@ -11,11 +11,23 @@ import { useCart } from '../context/useCart'
 import { products, businessInfo } from '../data/products'
 
 const highlights = [
-  '100% Original — Lab Tested & Verified',
-  'Best Prices in Vijayawada — Guaranteed',
-  'Free Delivery Across Vijayawada',
-  'Secure Payment & Easy Returns',
+  '100% Genuine imported authenticity guaranteed',
+  'Tested and certified in state-of-the-art facilities',
+  'Complimentary Vijayawada doorstep express shipping',
+  'Secure ordering with direct check-out pathways',
 ]
+
+const categoryLabels = {
+  'nutritional-supplements': 'Supplements',
+  'ayurvedic': 'Ayurvedic',
+  'organic': 'Organic',
+  'diet-rice': 'Diet Rice',
+  'honey-ghee': 'Honey & Ghee',
+  'dryfruits': 'Dry Fruits',
+  'cold-oils': 'Cold Pressed',
+  'cosmetics': 'Cosmetics',
+  'perfumes': 'Perfumes',
+}
 
 export default function ProductDetail() {
   const { id } = useParams()
@@ -29,37 +41,26 @@ export default function ProductDetail() {
 
   useEffect(() => {
     startTransition(() => { setLoading(true); setQuantity(1); setAdded(false) })
-    const t = setTimeout(() => setLoading(false), 350)
+    const t = setTimeout(() => setLoading(false), 300)
     window.scrollTo(0, 0)
     return () => clearTimeout(t)
   }, [id])
 
   if (loading) {
     return (
-      <div className="min-h-[60vh] bg-white">
-        <div className="container-fit py-8 lg:py-12">
-          <div className="grid md:grid-cols-2 gap-10 lg:gap-16">
-            <div className="skeleton h-[300px] sm:h-[450px] md:h-[550px] rounded-2xl" />
-            <div className="space-y-5">
-              <div className="skeleton h-4 w-24 rounded" />
-              <div className="skeleton h-8 w-3/4 rounded" />
-              <div className="skeleton h-5 w-40 rounded" />
-              <div className="skeleton h-24 w-full rounded" />
-              <div className="skeleton h-11 w-full rounded-xl" />
-            </div>
-          </div>
-        </div>
+      <div className="min-h-[60vh] bg-[#F8F6F1] flex items-center justify-center">
+        <div className="w-10 h-10 border-[3px] border-brand-green/20 border-t-brand-green rounded-full animate-spin" />
       </div>
     )
   }
 
   if (!product) {
     return (
-      <div className="min-h-[60vh] flex items-center justify-center">
+      <div className="min-h-[60vh] flex items-center justify-center bg-[#F8F6F1]">
         <div className="text-center px-4">
-          <h2 className="text-2xl font-bold text-black mb-3">Product Not Found</h2>
-          <p className="text-gray-500 mb-6">This product does not exist or has been removed.</p>
-          <Link to="/products" className="text-brand-green font-semibold hover:underline">
+          <h2 className="text-2xl font-black text-brand-dark mb-3 font-heading">Product Not Found</h2>
+          <p className="text-brand-gray mb-6 font-medium">This product does not exist or has been removed.</p>
+          <Link to="/products" className="text-brand-green font-extrabold hover:underline font-heading">
             Back to Products
           </Link>
         </div>
@@ -74,135 +75,168 @@ export default function ProductDetail() {
   }
 
   const handleWhatsApp = () => {
-    const msg = `Hi Fit Secrets Store! I want to order: ${product.name} (₹${product.price}). Quantity: ${quantity}.`
+    const msg = `Hi Fit Secrets! I would like to place an order: ${product.name} (₹${product.price}). Quantity: ${quantity}.`
     window.open(`https://wa.me/${businessInfo.whatsapp}?text=${encodeURIComponent(msg)}`, '_blank')
   }
 
   const savings = product.originalPrice - product.price
 
   return (
-    <div className="flex-1 flex flex-col bg-white">
+    <div className="flex-1 flex flex-col bg-[#F8F6F1] text-brand-dark">
       <Helmet>
         <title>{product.name} | Fit Secrets Store Vijayawada</title>
         <meta name="description" content={product.description.slice(0, 160)} />
       </Helmet>
-      <div className="container-fit py-6 lg:py-10 flex-1">
+      
+      <div className="container-fit py-8 lg:py-12 flex-1">
+        
+        {/* Back Link */}
         <Link
           to="/products"
-          className="inline-flex items-center gap-2 text-gray-400 hover:text-black transition-colors mb-6 text-[14px] font-medium"
+          className="inline-flex items-center gap-2 text-brand-gray hover:text-brand-dark transition-colors mb-8 text-[11px] font-black font-heading uppercase tracking-[2px]"
         >
-          <FiArrowLeft /> Back to Products
+          <FiArrowLeft className="text-xs" /> Back to Products
         </Link>
 
-        <div className="grid md:grid-cols-2 gap-10 lg:gap-16 mb-16 lg:mb-24">
-          <ScrollReveal delay={0.1}>
-            <div className="h-[300px] sm:h-[450px] md:h-[550px] lg:h-[600px]">
-              <ImageZoom src={product.image} alt={product.name} />
+        {/* Product Details Spread */}
+        <div className="grid md:grid-cols-[0.95fr_1.05fr] gap-12 lg:gap-20 mb-20 lg:mb-28">
+          
+          {/* Left Block Image Showcase */}
+          <ScrollReveal delay={0.05}>
+            <div className="aspect-square rounded-[32px] overflow-hidden border border-slate-100 shadow-luxury-soft bg-white p-6 relative flex items-center justify-center">
+              
+              {/* Soft visual background card circle */}
+              <div className="absolute w-[80%] h-[80%] rounded-full bg-[#F6F4EE]/50 z-0" />
+              
+              <div className="relative z-10 w-[90%] h-[90%] flex items-center justify-center">
+                <ImageZoom src={product.image} alt={product.name} />
+              </div>
+              
+              {product.discount > 0 && (
+                <span className="absolute top-6 left-6 bg-rose-500 text-white text-[9.5px] font-black px-3 py-1.5 rounded-lg tracking-widest shadow-md uppercase font-heading leading-none">
+                  -{product.discount}% OFF
+                </span>
+              )}
             </div>
           </ScrollReveal>
 
-          <ScrollReveal delay={0.2}>
-            <div>
-              <div className="flex items-center gap-2 mb-4">
-                <span className="text-[10px] font-semibold tracking-widest uppercase text-gray-400 bg-gray-100 px-3 py-1.5 rounded-lg">
-                  {product.category}
+          {/* Right Block Details Panel */}
+          <ScrollReveal delay={0.1}>
+            <div className="flex flex-col h-full justify-center">
+              
+              {/* Category & Tags Row */}
+              <div className="flex items-center gap-2 mb-4.5">
+                <span className="text-[10px] font-black tracking-[2px] uppercase text-brand-green bg-brand-green-light px-3.5 py-1.5 rounded-full border border-brand-green-light/40 font-heading">
+                  {categoryLabels[product.category] || product.category}
                 </span>
                 {product.isBestSeller && (
-                  <span className="text-[10px] font-semibold text-amber-600 bg-amber-50 px-3 py-1.5 rounded-lg">
+                  <span className="text-[10px] font-black text-brand-gold bg-brand-gold/10 px-3.5 py-1.5 rounded-full border border-brand-gold/20 font-heading uppercase tracking-[2px]">
                     Best Seller
                   </span>
                 )}
               </div>
 
-              <h1 className="text-[28px] sm:text-[34px] md:text-[38px] font-bold text-black mb-4 leading-tight">
+              {/* Title */}
+              <h1 className="text-[28px] sm:text-[34px] lg:text-[40px] font-black text-brand-dark mb-4 leading-tight font-heading tracking-tight">
                 {product.name}
               </h1>
 
+              {/* Stars ratings */}
               {product.rating && (
-                <div className="flex items-center gap-2 mb-5">
+                <div className="flex items-center gap-2 mb-6.5">
                   <div className="flex items-center gap-0.5">
                     {[...Array(5)].map((_, i) => (
                       <FiStar
                         key={i}
-                        className={`text-sm ${i < Math.floor(product.rating) ? 'fill-amber-400 text-amber-400' : 'fill-gray-200 text-gray-200'}`}
+                        className={`text-[11.5px] ${i < Math.floor(product.rating) ? 'fill-brand-gold text-brand-gold' : 'text-slate-200'}`}
                       />
                     ))}
                   </div>
-                  <span className="text-[14px] text-gray-500 font-medium">{product.rating}</span>
-                  <span className="text-[13px] text-gray-400">({product.reviewCount} reviews)</span>
+                  <span className="text-[13px] text-brand-dark font-extrabold">{product.rating}</span>
+                  <span className="text-[13px] text-brand-gray">({product.reviewCount} verified client reviews)</span>
                 </div>
               )}
 
+              {/* Pricing breakdown */}
               <div className="flex items-baseline gap-3 mb-2">
-                <span className="text-[32px] sm:text-[38px] font-bold text-black tracking-tight">
+                <span className="text-[34px] lg:text-[42px] font-black text-brand-dark tracking-tight font-heading leading-none">
                   ₹{product.price.toLocaleString()}
                 </span>
                 {product.originalPrice > product.price && (
                   <>
-                    <span className="text-lg text-gray-400 line-through">₹{product.originalPrice.toLocaleString()}</span>
-                    <span className="text-sm font-bold text-red-500 bg-red-50 px-3 py-1 rounded-lg">
-                      Save {product.discount}%
+                    <span className="text-[17px] text-brand-gray line-through font-bold">₹{product.originalPrice.toLocaleString()}</span>
+                    <span className="text-[9.5px] font-black text-rose-500 bg-rose-50 border border-rose-100 px-3 py-1.5 rounded-lg uppercase font-heading tracking-[1.5px] ml-1.5">
+                      -{product.discount}% OFF
                     </span>
                   </>
                 )}
               </div>
               {savings > 0 && (
-                <p className="text-[14px] font-medium text-brand-green mb-6">You save ₹{savings.toLocaleString()}</p>
+                <p className="text-[9.5px] font-black text-brand-green mb-6.5 bg-brand-green-light px-3 py-1 rounded-lg w-max font-heading uppercase tracking-[2px]">
+                  Immediate Savings: ₹{savings.toLocaleString()}
+                </p>
               )}
 
-              <p className="text-gray-600 text-[15px] sm:text-[16px] leading-relaxed mb-8">
+              {/* Description */}
+              <p className="text-brand-gray text-[16px] leading-relaxed mb-8 font-medium">
                 {product.description}
               </p>
 
-              <div className="space-y-3 mb-8">
+              {/* Goal parameters checkmark list */}
+              <div className="space-y-3.5 mb-8.5 border-t border-slate-200/50 pt-7">
                 {highlights.map((item, i) => (
-                  <div key={i} className="flex items-center gap-3 text-[13px] sm:text-[14px] text-gray-600">
-                    <FiCheck className="text-brand-green shrink-0" />
+                  <div key={i} className="flex items-start gap-3.5 text-[14px] text-brand-dark font-bold leading-normal">
+                    <div className="w-5 h-5 rounded-full bg-brand-green-light border border-brand-green-light/45 text-brand-green flex items-center justify-center shrink-0 mt-0.5">
+                      <FiCheck className="text-xs font-black" />
+                    </div>
                     <span>{item}</span>
                   </div>
                 ))}
               </div>
 
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-5">
+              {/* Purchase button configurations */}
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4.5 mb-4">
                 <QuantitySelector quantity={quantity} onChange={setQuantity} />
                 <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.97 }}
+                  whileHover={{ scale: 1.015 }}
+                  whileTap={{ scale: 0.98 }}
                   onClick={handleAdd}
-                  className={`w-full sm:w-auto px-8 h-12 rounded-2xl font-semibold text-[14px] flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer ${
-                    added ? 'bg-black text-white' : 'bg-black text-white hover:bg-gray-800'
-                  }`}
+                  className="btn-pill btn-pill-solid flex-1"
                 >
-                  <FiShoppingBag />
-                  {added ? 'Added!' : 'Add to Cart'}
+                  <FiShoppingBag className="text-sm" />
+                  {added ? 'Added to Cart' : 'Add to Cart'}
                 </motion.button>
               </div>
 
               <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.97 }}
+                whileHover={{ scale: 1.015 }}
+                whileTap={{ scale: 0.98 }}
                 onClick={handleWhatsApp}
-                className="w-full h-12 bg-green-500 text-white rounded-2xl font-semibold text-[14px] flex items-center justify-center gap-2.5 hover:bg-green-600 transition-all cursor-pointer"
+                className="btn-pill btn-pill-gold w-full shadow-lg"
               >
-                <FiMessageCircle />
-                Order via WhatsApp
+                <FiMessageCircle className="text-base" />
+                Submit Order via WhatsApp
               </motion.button>
 
-              <div className="flex items-center gap-5 mt-6 pt-6 border-t border-gray-100 text-[12px] sm:text-[13px] text-gray-400">
+              {/* Mini trust row details */}
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-3 mt-8 pt-7 border-t border-slate-200/50 text-[11.5px] text-brand-gray font-black tracking-widest uppercase font-heading">
                 <span className="flex items-center gap-1.5"><FiTruck className="text-brand-green" /> Free Delivery</span>
-                <span className="flex items-center gap-1.5"><FiShield className="text-brand-green" /> Secure</span>
-                <span className="flex items-center gap-1.5"><FiDollarSign className="text-brand-green" /> Best Price</span>
+                <span className="flex items-center gap-1.5"><FiShield className="text-brand-green" /> Certified Batch</span>
+                <span className="flex items-center gap-1.5"><FiDollarSign className="text-brand-green" /> Direct Wholesale</span>
               </div>
+
             </div>
           </ScrollReveal>
         </div>
 
+        {/* Related Products Section Staggered */}
         {related.length > 0 && (
-          <section className="border-t border-gray-100 pt-12 lg:pt-16">
+          <section className="border-t border-slate-200/50 pt-16 lg:pt-20">
             <ScrollReveal>
-              <h2 className="text-[24px] sm:text-[28px] font-bold text-black mb-8">Related Products</h2>
+              <span className="text-[10px] font-black tracking-[3px] text-brand-green uppercase font-heading block mb-2">CATALOG COMPLEMENTS</span>
+              <h2 className="text-h2 font-black text-brand-dark mb-10 font-heading tracking-tight leading-tight">Related Wellness Solutions</h2>
             </ScrollReveal>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-5 lg:gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               {related.map((p, i) => (
                 <ProductCard key={p.id} product={p} index={i} />
               ))}

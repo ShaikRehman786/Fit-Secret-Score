@@ -9,7 +9,7 @@ export default function SectionHeading({ subtitle, title, description }) {
             {subtitle}
           </span>
         )}
-        <h2 className="text-h2 text-black leading-[1.12] tracking-tight">
+        <h2 className="text-h2 text-white leading-[1.12] tracking-tight">
           {title}
         </h2>
         {description && (

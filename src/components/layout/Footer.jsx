@@ -1,46 +1,54 @@
 import { Link } from 'react-router-dom'
-import { FiMapPin, FiPhone, FiClock, FiInstagram, FiFacebook, FiMail } from 'react-icons/fi'
-import { businessInfo } from '../../data/products'
+import { FiMapPin, FiInstagram, FiFacebook, FiMail, FiSend } from 'react-icons/fi'
 
 const quickLinks = [
   { label: 'Home', to: '/' },
-  { label: 'Shop All', to: '/products' },
+  { label: 'Products', to: '/products' },
   { label: 'About Us', to: '/about' },
   { label: 'Contact', to: '/contact' },
 ]
 
 const categories = [
-  { label: 'Whey Protein', slug: 'whey-protein' },
-  { label: 'Mass Gainers', slug: 'mass-gainers' },
-  { label: 'Creatine', slug: 'creatine' },
-  { label: 'Fat Burners', slug: 'fat-burners' },
+  { label: 'Whey Protein', slug: 'nutritional-supplements' },
+  { label: 'Ayurvedic Products', slug: 'ayurvedic' },
+  { label: 'Organic Natural', slug: 'organic' },
+  { label: 'Dry Fruits', slug: 'dryfruits' },
 ]
 
 const socials = [
   { icon: FiInstagram, href: '#', label: 'Instagram' },
   { icon: FiFacebook, href: '#', label: 'Facebook' },
-  { icon: FiMail, href: 'mailto:info@fitsecrets.in', label: 'Email' },
+  { icon: FiMail, href: 'mailto:hello@fitsecrets.store', label: 'Email' },
 ]
 
 export default function Footer() {
+  const handleSubmit = (e) => {
+    e.preventDefault()
+  }
+
   return (
-    <footer className="bg-slate-950 text-white mt-auto border-t border-white/[0.04]">
-      <div className="section-container pt-[80px] pb-[40px] lg:pt-[100px] lg:pb-[60px]">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-14">
-          <div>
-            <Link to="/" className="inline-flex items-center gap-3 mb-5 group">
-              <div className="w-9.5 h-9.5 rounded-xl bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
-                <span className="text-white font-black text-base">F</span>
+    <footer className="bg-[#0A2215] text-white mt-auto border-t border-white/5 relative overflow-hidden">
+      {/* Background soft ambient gold glow */}
+      <div className="absolute w-[400px] h-[400px] rounded-full bg-brand-gold/5 blur-[120px] bottom-[-20%] right-[-10%] pointer-events-none" />
+      
+      <div className="section-container relative z-10 pt-[110px] pb-[60px] lg:pt-[130px] lg:pb-[70px]">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-[1.2fr_0.7fr_0.7fr_1.4fr] gap-12 lg:gap-16">
+          
+          {/* Logo & Description */}
+          <div className="space-y-6">
+            <Link to="/" className="inline-flex items-center gap-3.5 group">
+              <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-all duration-300 group-hover:scale-105 shadow-md">
+                <span className="text-brand-gold font-serif-lux text-xl font-bold italic">F</span>
               </div>
               <div className="flex flex-col leading-none">
-                <span className="font-bold text-[15px] text-white tracking-tight">Fit Secrets</span>
-                <span className="text-[8px] text-white/40 tracking-[3px] uppercase mt-0.5">Store</span>
+                <span className="font-extrabold text-[17px] text-white tracking-tight font-heading">Fit Secrets</span>
+                <span className="text-[9px] text-brand-gold font-black tracking-[4px] uppercase mt-0.5 font-heading">Store</span>
               </div>
             </Link>
-            <p className="text-[13px] text-slate-400 leading-relaxed mb-6 max-w-[260px]">
-              Vijayawada's most trusted fitness nutrition store. All products lab-tested and guaranteed authentic.
+            <p className="text-[14px] text-slate-300 leading-relaxed max-w-[280px] font-medium">
+              Vijayawada's flagship fitness nutrition store. Lab-tested authentic supplements, customized nutrition advice, and curated wellness labels.
             </p>
-            <div className="flex gap-2.5">
+            <div className="flex gap-3 pt-2">
               {socials.map((s, i) => (
                 <a
                   key={i}
@@ -48,7 +56,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={s.label}
-                  className="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/[0.07] flex items-center justify-center text-slate-400 hover:bg-brand-green hover:text-white hover:border-brand-green/20 hover:scale-105 shadow-sm transition-all duration-300 hover:shadow-[0_8px_20px_rgba(0,200,83,0.25)]"
+                  className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-slate-300 hover:bg-brand-gold hover:text-brand-dark hover:border-brand-gold hover:scale-105 transition-all duration-300 hover:shadow-luxury-glow"
                 >
                   <s.icon className="text-[14px]" />
                 </a>
@@ -56,12 +64,13 @@ export default function Footer() {
             </div>
           </div>
 
+          {/* Quick Links */}
           <div>
-            <h4 className="text-[10px] font-black text-slate-500 tracking-[3px] mb-6 uppercase">QUICK LINKS</h4>
-            <ul className="space-y-3">
+            <h4 className="text-[9.5px] font-black text-brand-gold tracking-[3px] mb-6 uppercase font-heading">QUICK LINKS</h4>
+            <ul className="space-y-3.5">
               {quickLinks.map((link, i) => (
                 <li key={i}>
-                  <Link to={link.to} className="text-[14px] text-slate-400 hover:text-brand-green transition-all duration-300 hover:translate-x-1 inline-block">
+                  <Link to={link.to} className="text-[14px] text-slate-350 hover:text-brand-gold transition-all duration-300 hover:translate-x-1.5 inline-block font-medium">
                     {link.label}
                   </Link>
                 </li>
@@ -69,12 +78,13 @@ export default function Footer() {
             </ul>
           </div>
 
+          {/* Categories */}
           <div>
-            <h4 className="text-[10px] font-black text-slate-500 tracking-[3px] mb-6 uppercase">CATEGORIES</h4>
-            <ul className="space-y-3">
+            <h4 className="text-[9.5px] font-black text-brand-gold tracking-[3px] mb-6 uppercase font-heading">CATEGORIES</h4>
+            <ul className="space-y-3.5">
               {categories.map((cat, i) => (
                 <li key={i}>
-                  <Link to={`/products?category=${cat.slug}`} className="text-[14px] text-slate-400 hover:text-brand-green transition-all duration-300 hover:translate-x-1 inline-block">
+                  <Link to={`/products?category=${cat.slug}`} className="text-[14px] text-slate-355 hover:text-brand-gold transition-all duration-300 hover:translate-x-1.5 inline-block font-medium">
                     {cat.label}
                   </Link>
                 </li>
@@ -82,33 +92,46 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div>
-            <h4 className="text-[10px] font-black text-slate-500 tracking-[3px] mb-6 uppercase">VISIT US</h4>
-            <ul className="space-y-4 text-[14px] text-slate-400">
-              <li className="flex gap-3">
-                <FiMapPin className="text-brand-green shrink-0 mt-0.5" />
-                <span className="leading-relaxed">{businessInfo.address}</span>
-              </li>
-              <li className="flex gap-3">
-                <FiPhone className="text-brand-green shrink-0 mt-0.5" />
-                <a href={`tel:${businessInfo.phone}`} className="hover:text-brand-green transition-colors duration-300">{businessInfo.phone}</a>
-              </li>
-              <li className="flex gap-3">
-                <FiClock className="text-brand-green shrink-0 mt-0.5" />
-                <span>Open daily till 10 PM</span>
-              </li>
-            </ul>
+          {/* Newsletter */}
+          <div className="space-y-6">
+            <div>
+              <h4 className="text-[9.5px] font-black text-brand-gold tracking-[3px] mb-5 uppercase font-heading">JOIN THE CLUB</h4>
+              <p className="text-[14px] text-slate-300 leading-relaxed max-w-[340px] font-medium">
+                Subscribe for training blueprints, early product restocks, and exclusive client offers.
+              </p>
+            </div>
+            
+            {/* Elegant Luxury dark input */}
+            <form onSubmit={handleSubmit} className="relative flex items-center border-b border-white/20 focus-within:border-brand-gold transition-all max-w-[340px] py-1.5 pr-2">
+              <input
+                type="email"
+                placeholder="Enter email address"
+                className="bg-transparent border-none text-white text-[13.5px] outline-none w-full font-medium placeholder-slate-400 py-2"
+                required
+              />
+              <button
+                type="submit"
+                className="absolute right-0 w-8 h-8 rounded-full bg-brand-gold text-brand-dark hover:bg-white transition-all flex items-center justify-center cursor-pointer shadow-md"
+                aria-label="Subscribe"
+              >
+                <FiSend className="text-xs" />
+              </button>
+            </form>
           </div>
         </div>
       </div>
-      <div className="border-t border-white/[0.04]">
-        <div className="section-container py-5">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
-            <p className="text-[12px] text-white/30">
-              &copy; {new Date().getFullYear()} Fit Secrets Store. All rights reserved.
-            </p>
-            <p className="text-[12px] text-white/20">
-              Premium Fitness Nutrition Since 2020
+      
+      {/* Bottom Copyright bar */}
+      <div className="border-t border-white/5 bg-black/10">
+        <div className="section-container py-6">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-4 text-[13px] text-white/40 font-medium">
+              <span>&copy; {new Date().getFullYear()} Fit Secrets.</span>
+              <span className="hidden sm:inline text-white/10">|</span>
+              <span className="flex items-center gap-1.5"><FiMapPin className="text-brand-gold text-xs" /> Vijayawada, AP</span>
+            </div>
+            <p className="text-[10px] font-black tracking-[2px] uppercase font-heading text-white/35">
+              Refined Wellness Store
             </p>
           </div>
         </div>
