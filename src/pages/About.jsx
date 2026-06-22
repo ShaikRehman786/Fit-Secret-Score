@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async'
 import { FiAward, FiUsers, FiShield, FiClock, FiCheck } from 'react-icons/fi'
 import ScrollReveal from '../components/ui/ScrollReveal'
 import LazyImage from '../components/ui/LazyImage'
+import clients from '../assets/clients.webp'
 
 const timeline = [
   {
@@ -168,10 +169,10 @@ export default function About() {
                 <div className="rounded-[32px] overflow-hidden border border-slate-100 bg-[#F8F6F1] p-3 shadow-luxury-soft">
                   <div className="rounded-[24px] overflow-hidden">
                     <LazyImage
-                      src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80"
-                      alt="Fit Secrets Store Front"
+                      src={clients}
+                      alt="Fit Secrets Store"
                       wrapperClass="w-full aspect-[4/3] sm:aspect-[1.35]"
-                      className="w-full h-full object-cover transition-transform duration-700 hover:scale-103"
+                      className="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-103"
                     />
                   </div>
                 </div>
