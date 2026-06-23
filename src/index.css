@@ -795,12 +795,16 @@ body.modal-open {
   overflow: hidden;
 }
 
-@keyframes float-image-gentle {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-6px); }
+@keyframes floatProduct {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
 }
 
-.animate-float-image {
-  animation: float-image-gentle 4s ease-in-out infinite;
+.animate-float-product {
+  animation: floatProduct 4s ease-in-out infinite;
 }
 

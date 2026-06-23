@@ -11,8 +11,8 @@ import LazyImage from '../components/ui/LazyImage'
 import { businessInfo, products, reviews, categories as allCategories } from '../data/products'
 import { useCart } from '../context/useCart'
 import wheyProtein from '../assets/yu.png'
-import honey from '../assets/honey.png'
-import almonds from '../assets/almonds.png'
+import honey from '../assets/yy.png'
+import almonds from '../assets/yz.png'
 
 const categories = allCategories.filter(c => c.featured) || []
 
@@ -80,36 +80,17 @@ function FloatingParticles() {
 
 function HeroSection() {
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [isTransitioning, setIsTransitioning] = useState(true)
   const [isHovered, setIsHovered] = useState(false)
-
-  const slides = useMemo(() => [...heroImages, heroImages[0]], [])
 
   useEffect(() => {
     if (isHovered) return
 
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => prev + 1)
-    }, 4500) // 4.5s per slide (includes 800ms transition)
+      setCurrentIndex((prev) => (prev + 1) % heroImages.length)
+    }, 4500) // 4.5s per slide
 
     return () => clearInterval(interval)
   }, [isHovered])
-
-  const handleTransitionEnd = () => {
-    if (currentIndex === slides.length - 1) {
-      setIsTransitioning(false)
-      setCurrentIndex(0)
-    }
-  }
-
-  useEffect(() => {
-    if (!isTransitioning && currentIndex === 0) {
-      const timeout = setTimeout(() => {
-        setIsTransitioning(true)
-      }, 50)
-      return () => clearTimeout(timeout)
-    }
-  }, [isTransitioning, currentIndex])
 
   const handleMouseEnter = () => {
     if (window.innerWidth >= 1024) {
@@ -225,63 +206,35 @@ function HeroSection() {
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
           >
             <div 
-              className="relative w-full max-w-[320px] lg:max-w-[420px] mx-auto lg:mx-0 aspect-[4/5] pointer-events-auto"
+              className="relative w-full max-w-[320px] lg:max-w-[420px] mx-auto lg:mx-0 aspect-[4/5] pointer-events-auto flex items-center justify-center"
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
-              {/* Premium lighting glow behind showcase */}
-              <div className="absolute -inset-8 rounded-[40px] bg-brand-green/15 blur-[50px] pointer-events-none z-0" />
-              <div className="absolute -inset-4 rounded-[32px] bg-brand-gold/8 blur-[30px] pointer-events-none z-0" style={{ animationDelay: '2s' }} />
-              
+              {/* Premium lighting glow behind showcase (radial only, no box shape) */}
               <div 
-                className="absolute -inset-10 rounded-[50px] pointer-events-none z-0 opacity-60"
+                className="absolute w-[120%] h-[120%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none z-0 opacity-80"
                 style={{
-                  background: 'radial-gradient(circle, rgba(15, 91, 67, 0.22) 0%, rgba(201, 168, 106, 0.08) 50%, transparent 70%)',
-                  filter: 'blur(40px)',
+                  background: 'radial-gradient(circle, rgba(15, 91, 67, 0.35) 0%, rgba(15, 91, 67, 0.15) 35%, transparent 70%)',
                 }}
               />
               
-              {/* Glass container with floating animation */}
-              <div 
-                className="relative w-full h-full rounded-[24px] overflow-hidden animate-float-video z-10"
-                style={{
-                  background: 'linear-gradient(135deg, rgba(15, 91, 67, 0.18), rgba(201, 168, 106, 0.08))',
-                  backdropFilter: 'blur(12px)',
-                  WebkitBackdropFilter: 'blur(12px)',
-                  border: '1px solid rgba(201, 168, 106, 0.15)',
-                  boxShadow: '0 20px 50px rgba(0, 0, 0, 0.18), 0 0 60px rgba(15, 91, 67, 0.12)',
-                  padding: '20px',
-                }}
-              >
-                {/* Horizontal slider track */}
-                <div 
-                  className="w-full h-full flex"
-                  style={{
-                    transform: `translateX(-${currentIndex * 100}%)`,
-                    transition: isTransitioning ? 'transform 800ms cubic-bezier(0.25, 1, 0.5, 1)' : 'none',
-                  }}
-                  onTransitionEnd={handleTransitionEnd}
-                >
-                  {slides.map((image, idx) => (
-                    <div 
-                      key={idx} 
-                      className="w-full h-full flex-shrink-0 flex items-center justify-center p-4"
-                    >
-                      <img
-                        src={image}
-                        alt={`Premium Showcase Product ${idx + 1}`}
-                        className="w-full h-full object-contain pointer-events-none select-none animate-float-image"
-                        style={{
-                          maxHeight: '100%',
-                          maxWidth: '100%',
-                          filter: 'drop-shadow(0 15px 35px rgba(0,0,0,0.25))',
-                        }}
-                      />
-                    </div>
-                  ))}
-                </div>
-                {/* Premium inner shadow overlay */}
-                <div className="absolute inset-0 rounded-[24px] ring-1 ring-inset ring-white/5 pointer-events-none" />
+              {/* Product wrapper with float animation */}
+              <div className="relative w-full h-full z-10 flex items-center justify-center animate-float-product">
+                <AnimatePresence>
+                  <motion.img
+                    key={currentIndex}
+                    src={heroImages[currentIndex]}
+                    alt={`Premium Showcase Product`}
+                    initial={{ opacity: 0, scale: 0.98 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.98 }}
+                    transition={{ duration: 1.0, ease: 'easeInOut' }}
+                    className="absolute w-full h-full object-contain pointer-events-none select-none p-4"
+                    style={{
+                      filter: 'drop-shadow(0 25px 40px rgba(0,0,0,0.45)) drop-shadow(0 0 18px rgba(15,91,67,0.25))',
+                    }}
+                  />
+                </AnimatePresence>
               </div>
             </div>
           </motion.div>
