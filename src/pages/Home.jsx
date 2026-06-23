@@ -13,6 +13,8 @@ import { useCart } from '../context/useCart'
 import wheyProtein from '../assets/yu.png'
 import honey from '../assets/yy.png'
 import almonds from '../assets/yz.png'
+import ayurvedicCategoryImg from '../assets/ayurvedic_category.png'
+import dryfruitsCategoryImg from '../assets/dryfruits_category.png'
 
 const categories = allCategories.filter(c => c.featured) || []
 
@@ -115,7 +117,7 @@ function HeroSection() {
       {/* Floating green energy particles */}
       <FloatingParticles />
 
-      <div className="section-container relative z-10">
+      <div className="section-container relative z-10 flex flex-col gap-12 lg:gap-16">
         <div className="flex flex-col lg:grid lg:grid-cols-[1.1fr_0.9fr] gap-10 lg:gap-16 items-center">
           
           {/* Hero text */}
@@ -239,52 +241,45 @@ function HeroSection() {
             </div>
           </motion.div>
         </div>
-      </div>
-    </section>
-  )
-}
 
-function StatsBar() {
-  return (
-    <section className="section-spacing-md bg-[#F8F4EC] relative overflow-hidden">
-      {/* Subtle decorative elements */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] h-[1px] bg-gradient-to-r from-transparent via-brand-gold/15 to-transparent" />
-      
-      <div className="section-container relative z-10">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {stats.map((stat, i) => {
-            const Icon = stat.icon
-            return (
-              <ScrollReveal key={i} className="w-full" delay={i * 0.06}>
-                <div className="bg-white border-t-[3px] border-t-brand-gold border-x border-b border-slate-100/70 p-8 rounded-[24px] shadow-luxury-soft hover:shadow-luxury-hover transition-all duration-500 flex flex-col items-center text-center h-full group gold-accent-line">
-                  <div className="w-12 h-12 rounded-xl bg-[#EFE8DC]/50 text-brand-green flex items-center justify-center mb-5 shrink-0 group-hover:bg-brand-green group-hover:text-white transition-all duration-400 shadow-sm border border-slate-200/20 group-hover:scale-110">
-                    <Icon className="text-xl" />
+        {/* Stats / Ratings bottom section */}
+        <div className="w-full pt-10 border-t border-white/10 relative z-20">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
+            {stats.map((stat, i) => {
+              const Icon = stat.icon
+              return (
+                <ScrollReveal key={i} className="w-full" delay={i * 0.06}>
+                  <div className="luxury-hero-stat-card group">
+                    <div className="luxury-hero-stat-icon-wrapper">
+                      <Icon className="luxury-hero-stat-icon" />
+                    </div>
+                    <div className="luxury-hero-stat-value">
+                      {stat.value}
+                    </div>
+                    <div className="luxury-hero-stat-label">
+                      {stat.label}
+                    </div>
+                    <div className="luxury-hero-stat-desc">
+                      {stat.desc}
+                    </div>
                   </div>
-                  <div className="text-[34px] sm:text-[38px] font-black text-brand-green mb-1 tracking-tight font-heading leading-none">
-                    {stat.value}
-                  </div>
-                  <div className="text-[10px] font-black tracking-[2px] text-brand-dark uppercase font-heading mb-2">
-                    {stat.label}
-                  </div>
-                  <div className="text-[12.5px] text-brand-gray font-medium leading-relaxed max-w-[200px]">
-                    {stat.desc}
-                  </div>
-                </div>
-              </ScrollReveal>
-            )
-          })}
+                </ScrollReveal>
+              )
+            })}
+          </div>
         </div>
       </div>
     </section>
   )
 }
 
+
 function CategoriesSection() {
   const categoryImages = {
     'nutritional-supplements': 'https://images.unsplash.com/photo-1579758629938-03607ccdbaba?w=600&q=80',
-    'ayurvedic': 'https://images.unsplash.com/photo-1611070973770-b1a672610041?w=600&q=80',
+    'ayurvedic': ayurvedicCategoryImg,
     'organic': 'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=600&q=80',
-    'dryfruits': 'https://images.unsplash.com/photo-1596560548464-f010687d8af8?w=600&q=80',
+    'dryfruits': dryfruitsCategoryImg,
   }
 
   return (
@@ -706,7 +701,6 @@ export default function Home() {
       </Helmet>
       <MarqueeBanner />
       <HeroSection />
-      <StatsBar />
       <CategoriesSection />
       <PopularProductsSection onQuickView={openQuickView} />
       <ReviewsSection />
