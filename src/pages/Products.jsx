@@ -117,7 +117,7 @@ export default function Products() {
             </div>
 
             {/* Filter and Sorting Controls */}
-            <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-6 mb-16">
+            <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-6 mb-14">
               <div className="relative flex-1 max-w-md">
                 <FiSearch className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none text-[18px]" />
                 <input
@@ -160,7 +160,7 @@ export default function Products() {
                 transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
               >
                 {filtered.length > 0 ? (
-                  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-12 lg:gap-y-16 pb-12">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-14 lg:gap-y-16 pb-12">
                     {filtered.map((product, i) => {
                       // Apply staggered column offset on desktop to match Awwwards aesthetic
                       const staggeredClass = i % 2 === 1 ? 'lg:translate-y-8' : ''

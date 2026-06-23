@@ -101,18 +101,13 @@ export default function Navbar() {
                   <Link
                     key={link.path}
                     to={link.path}
-                    className={`relative py-2 text-[11.5px] font-semibold tracking-[0.12em] uppercase font-heading transition-all duration-300 group ${
+                    className={`relative py-2 text-[11.5px] font-semibold tracking-[0.12em] uppercase font-heading transition-all duration-300 group nav-link-premium ${
                       active
-                        ? 'text-[#C9A86A]'
+                        ? 'text-[#C9A86A] active'
                         : 'text-[#2A2A2A] hover:text-[#0F5B43]'
                     }`}
                   >
-                    <span>
-                      {link.label}
-                      <span className={`absolute bottom-[-4px] left-0 w-full h-[1.5px] bg-[#C9A86A] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left ${
-                        active ? 'scale-x-100' : ''
-                      }`} />
-                    </span>
+                    {link.label}
                   </Link>
                 )
               })}

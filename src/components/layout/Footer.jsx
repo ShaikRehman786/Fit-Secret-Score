@@ -27,9 +27,10 @@ export default function Footer() {
   }
 
   return (
-    <footer className="bg-[#0A2215] text-white mt-auto border-t border-white/5 relative overflow-hidden">
+    <footer className="bg-[#0A2215] text-white mt-auto border-t border-white/5 relative overflow-hidden grain-texture">
       {/* Background soft ambient gold glow */}
       <div className="absolute w-[400px] h-[400px] rounded-full bg-brand-gold/5 blur-[120px] bottom-[-20%] right-[-10%] pointer-events-none" />
+      <div className="absolute w-[300px] h-[300px] rounded-full bg-brand-green/5 blur-[100px] top-[-15%] left-[-5%] pointer-events-none" />
       
       <div className="section-container relative z-10 pt-[110px] pb-[60px] lg:pt-[130px] lg:pb-[70px]">
         <div className="grid sm:grid-cols-2 lg:grid-cols-[1.2fr_0.7fr_0.7fr_1.4fr] gap-12 lg:gap-16">
@@ -56,7 +57,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={s.label}
-                  className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-slate-300 hover:bg-brand-gold hover:text-brand-dark hover:border-brand-gold hover:scale-105 transition-all duration-300 hover:shadow-luxury-glow"
+                  className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-slate-300 hover:bg-brand-gold hover:text-brand-dark hover:border-brand-gold hover:scale-110 transition-all duration-300 hover:shadow-luxury-glow"
                 >
                   <s.icon className="text-[14px]" />
                 </a>
@@ -70,8 +71,9 @@ export default function Footer() {
             <ul className="space-y-3.5">
               {quickLinks.map((link, i) => (
                 <li key={i}>
-                  <Link to={link.to} className="text-[14px] text-slate-350 hover:text-brand-gold transition-all duration-300 hover:translate-x-1.5 inline-block font-medium">
+                  <Link to={link.to} className="text-[14px] text-slate-350 hover:text-brand-gold transition-all duration-300 hover:translate-x-1.5 inline-block font-medium relative group">
                     {link.label}
+                    <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-brand-gold/40 transition-all duration-300 group-hover:w-full" />
                   </Link>
                 </li>
               ))}
@@ -84,8 +86,9 @@ export default function Footer() {
             <ul className="space-y-3.5">
               {categories.map((cat, i) => (
                 <li key={i}>
-                  <Link to={`/products?category=${cat.slug}`} className="text-[14px] text-slate-355 hover:text-brand-gold transition-all duration-300 hover:translate-x-1.5 inline-block font-medium">
+                  <Link to={`/products?category=${cat.slug}`} className="text-[14px] text-slate-355 hover:text-brand-gold transition-all duration-300 hover:translate-x-1.5 inline-block font-medium relative group">
                     {cat.label}
+                    <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-brand-gold/40 transition-all duration-300 group-hover:w-full" />
                   </Link>
                 </li>
               ))}

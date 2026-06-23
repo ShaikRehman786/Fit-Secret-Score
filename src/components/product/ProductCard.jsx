@@ -48,52 +48,50 @@ function ProductCard({ product, index = 0, onQuickView }) {
       {/* Dynamic Image Wrapper Container */}
       <div className="luxury-product-image-container aspect-square w-full flex items-center justify-center p-6 relative">
         
-        {/* Soft radial base background behind product */}
         <div className="absolute inset-0 bg-[#F6F4EE]/50 group-hover:bg-[#F3EFE7] transition-colors duration-500 z-0" />
         
-        {/* Inner circle frame overlay */}
-        <div className="absolute w-[80%] h-[80%] rounded-full border border-black/[0.02] group-hover:border-black/[0.04] transition-all duration-500 z-0 scale-95 group-hover:scale-100" />
+        <div className="absolute w-[80%] h-[80%] rounded-full border border-black/[0.02] group-hover:border-brand-green/[0.06] transition-all duration-500 z-0 scale-95 group-hover:scale-100" />
         
         <div className="w-[85%] h-[85%] z-10 flex items-center justify-center relative overflow-hidden rounded-2xl">
           <LazyImage
             src={product.image}
             alt={product.name}
             wrapperClass="w-full h-full"
-            className="w-full h-full object-cover group-hover:scale-108 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+            className="w-full h-full object-cover group-hover:scale-110 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
           />
         </div>
 
         {/* Hover action popup deck */}
-        <div className="absolute inset-0 bg-brand-dark/10 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-all duration-350 flex items-center justify-center gap-3.5 z-20">
+        <div className="absolute inset-0 bg-brand-dark/15 backdrop-blur-[3px] opacity-0 group-hover:opacity-100 transition-all duration-400 flex items-center justify-center gap-3.5 z-20">
           <button
             onClick={(e) => {
               e.preventDefault()
               e.stopPropagation()
               if (onQuickView) onQuickView(product)
             }}
-            className="w-11 h-11 rounded-full bg-white hover:bg-brand-green text-brand-dark hover:text-white flex items-center justify-center transition-all duration-300 hover:scale-108 shadow-luxury-depth cursor-pointer border border-slate-100"
+            className="w-11 h-11 rounded-full bg-white hover:bg-brand-green text-brand-dark hover:text-white flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-luxury-depth cursor-pointer border border-slate-100"
             title="Quick View"
           >
             <FiEye className="text-base" />
           </button>
           <button
             onClick={handleAdd}
-            className="w-11 h-11 rounded-full bg-white hover:bg-brand-green text-brand-dark hover:text-white flex items-center justify-center transition-all duration-300 hover:scale-108 shadow-luxury-depth cursor-pointer border border-slate-100"
+            className="w-11 h-11 rounded-full bg-white hover:bg-brand-green text-brand-dark hover:text-white flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-luxury-depth cursor-pointer border border-slate-100"
             title="Add to Cart"
           >
             <FiShoppingBag className="text-base" />
           </button>
         </div>
 
-        {/* Dynamic badge tags */}
+        {/* Premium badge tags */}
         <div className="absolute top-4.5 left-4.5 flex flex-col gap-1.5 z-10">
           {product.discount > 0 && (
-            <span className="bg-rose-500 text-white text-[9px] font-black px-2.5 py-1.5 rounded-lg tracking-widest shadow-sm uppercase font-heading leading-none">
+            <span className="bg-gradient-to-r from-rose-500 to-rose-400 text-white text-[9px] font-black px-2.5 py-1.5 rounded-lg tracking-widest shadow-md uppercase font-heading leading-none">
               -{product.discount}%
             </span>
           )}
           {product.isBestSeller && (
-            <span className="bg-brand-gold text-white text-[9px] font-black px-2.5 py-1.5 rounded-lg tracking-widest shadow-sm uppercase font-heading leading-none">
+            <span className="bg-gradient-to-r from-brand-gold to-brand-gold-dark text-white text-[9px] font-black px-2.5 py-1.5 rounded-lg tracking-widest shadow-md uppercase font-heading leading-none">
               Best Seller
             </span>
           )}
@@ -102,7 +100,7 @@ function ProductCard({ product, index = 0, onQuickView }) {
         {/* Wishlist toggle */}
         <button
           onClick={toggleWishlist}
-          className="absolute top-4.5 right-4.5 w-9 h-9 rounded-full bg-white/90 border border-slate-100/80 backdrop-blur-md flex items-center justify-center text-brand-dark hover:text-rose-500 hover:scale-105 hover:bg-white transition-all duration-300 z-10 cursor-pointer shadow-sm"
+          className="absolute top-4.5 right-4.5 w-9 h-9 rounded-full bg-white/90 border border-slate-100/80 backdrop-blur-md flex items-center justify-center text-brand-dark hover:text-rose-500 hover:scale-110 hover:bg-white transition-all duration-300 z-10 cursor-pointer shadow-sm hover:shadow-luxury-soft"
           aria-label="Wishlist"
         >
           <FiHeart className={`text-[13px] transition-all duration-300 ${wishlisted ? 'fill-rose-500 text-rose-500 scale-110' : ''}`} />
@@ -124,12 +122,11 @@ function ProductCard({ product, index = 0, onQuickView }) {
         </div>
         
         <Link to={`/product/${product.id}`}>
-          <h3 className="font-extrabold text-[15px] text-brand-dark leading-snug hover:text-brand-green transition-colors line-clamp-2 min-h-[40px] font-heading">
+          <h3 className="font-extrabold text-[15px] text-brand-dark leading-snug hover:text-brand-green transition-colors duration-300 line-clamp-2 min-h-[40px] font-heading">
             {product.name}
           </h3>
         </Link>
 
-        {/* Pricing Layout */}
         <div className="flex items-center justify-between gap-3 mt-4.5">
           <div className="flex items-baseline gap-2">
             <span className="text-[18px] font-black text-brand-dark tracking-tight font-heading">
@@ -148,20 +145,20 @@ function ProductCard({ product, index = 0, onQuickView }) {
           )}
         </div>
 
-        {/* Rounded Pill CTA Action Button */}
+        {/* Premium Pill CTA Action Button */}
         <div className="mt-5">
           <button
             onClick={handleAdd}
-            className={`w-full h-[45px] rounded-full font-extrabold text-[11px] tracking-widest uppercase font-heading flex items-center justify-center gap-2 transition-all duration-300 cursor-pointer ${
+            className={`w-full h-[45px] rounded-full font-extrabold text-[11px] tracking-widest uppercase font-heading flex items-center justify-center gap-2 transition-all duration-400 cursor-pointer ${
               added
-                ? 'bg-brand-green text-white shadow-[0_4px_12px_rgba(31,111,67,0.2)]'
-                : 'bg-transparent text-brand-green border border-brand-green/30 hover:bg-brand-green hover:text-white hover:border-brand-green'
+                ? 'bg-brand-green text-white shadow-[0_6px_16px_rgba(31,111,67,0.25)] scale-[1.02]'
+                : 'bg-transparent text-brand-green border border-brand-green/30 hover:bg-brand-green hover:text-white hover:border-brand-green hover:shadow-[0_6px_16px_rgba(31,111,67,0.2)] hover:scale-[1.02]'
             }`}
           >
             {added ? (
               <><FiCheck className="text-xs font-black animate-bounce" /> Added</>
             ) : (
-              <><FiShoppingBag className="text-xs animate-pulse" /> Add to Cart</>
+              <><FiShoppingBag className="text-xs" /> Add to Cart</>
             )}
           </button>
         </div>

@@ -55,13 +55,13 @@ export default function Contact() {
       </section>
 
       {/* Form and Info Section */}
-      <section className="flex-1 bg-[#F8F6F1] py-24 lg:py-28 relative">
+      <section className="flex-1 bg-[#F8F6F1] py-24 lg:py-32 relative">
         <div className="section-container relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
             
             {/* Left Column Form */}
             <ScrollReveal>
-              <div className="bg-white rounded-[32px] p-8 sm:p-12 lg:p-16 border border-slate-100 shadow-luxury-soft">
+              <div className="bg-white rounded-[32px] p-8 sm:p-12 lg:p-16 border border-slate-100 shadow-luxury-soft hover:shadow-luxury-depth transition-shadow duration-500">
                 <span className="text-[9.5px] font-black text-brand-green uppercase tracking-[2.5px] font-heading block mb-2">SEND AN ENQUIRY</span>
                 <h2 className="text-[22px] font-black text-brand-dark mb-8 tracking-tight font-heading">Consultation Request</h2>
                 
@@ -141,8 +141,8 @@ export default function Contact() {
                 <div className="grid gap-6 sm:gap-7">
                   
                   {/* Address Card */}
-                  <div className="p-7 bg-white border border-brand-gold/15 rounded-[28px] shadow-luxury-soft hover:-translate-y-1.5 transition-all duration-400 flex gap-5 items-start group">
-                    <div className="w-11 h-11 rounded-xl bg-[#F6F4EE] group-hover:bg-brand-green text-brand-green group-hover:text-white flex items-center justify-center shrink-0 border border-slate-150 transition-all shadow-sm">
+                  <div className="p-7 bg-white border border-brand-gold/15 rounded-[28px] shadow-luxury-soft hover:shadow-luxury-hover hover:-translate-y-1.5 transition-all duration-500 flex gap-5 items-start group">
+                    <div className="w-11 h-11 rounded-xl bg-[#F6F4EE] group-hover:bg-brand-green text-brand-green group-hover:text-white flex items-center justify-center shrink-0 border border-slate-150 transition-all duration-300 shadow-sm group-hover:scale-110">
                       <FiMapPin className="text-[17px]" />
                     </div>
                     <div>
@@ -154,8 +154,8 @@ export default function Contact() {
                   </div>
 
                   {/* Phone Card */}
-                  <div className="p-7 bg-white border border-brand-gold/15 rounded-[28px] shadow-luxury-soft hover:-translate-y-1.5 transition-all duration-400 flex gap-5 items-start group">
-                    <div className="w-11 h-11 rounded-xl bg-[#F6F4EE] group-hover:bg-brand-green text-brand-green group-hover:text-white flex items-center justify-center shrink-0 border border-slate-150 transition-all shadow-sm">
+                  <div className="p-7 bg-white border border-brand-gold/15 rounded-[28px] shadow-luxury-soft hover:shadow-luxury-hover hover:-translate-y-1.5 transition-all duration-500 flex gap-5 items-start group">
+                    <div className="w-11 h-11 rounded-xl bg-[#F6F4EE] group-hover:bg-brand-green text-brand-green group-hover:text-white flex items-center justify-center shrink-0 border border-slate-150 transition-all duration-300 shadow-sm group-hover:scale-110">
                       <FiPhone className="text-[17px]" />
                     </div>
                     <div>
@@ -167,8 +167,8 @@ export default function Contact() {
                   </div>
 
                   {/* Email Card */}
-                  <div className="p-7 bg-white border border-brand-gold/15 rounded-[28px] shadow-luxury-soft hover:-translate-y-1.5 transition-all duration-400 flex gap-5 items-start group">
-                    <div className="w-11 h-11 rounded-xl bg-[#F6F4EE] group-hover:bg-brand-green text-brand-green group-hover:text-white flex items-center justify-center shrink-0 border border-slate-150 transition-all shadow-sm">
+                  <div className="p-7 bg-white border border-brand-gold/15 rounded-[28px] shadow-luxury-soft hover:shadow-luxury-hover hover:-translate-y-1.5 transition-all duration-500 flex gap-5 items-start group">
+                    <div className="w-11 h-11 rounded-xl bg-[#F6F4EE] group-hover:bg-brand-green text-brand-green group-hover:text-white flex items-center justify-center shrink-0 border border-slate-150 transition-all duration-300 shadow-sm group-hover:scale-110">
                       <FiMail className="text-[17px]" />
                     </div>
                     <div>
@@ -180,8 +180,8 @@ export default function Contact() {
                   </div>
 
                   {/* Hours Card */}
-                  <div className="p-7 bg-white border border-brand-gold/15 rounded-[28px] shadow-luxury-soft hover:-translate-y-1.5 transition-all duration-400 flex gap-5 items-start group">
-                    <div className="w-11 h-11 rounded-xl bg-[#F6F4EE] group-hover:bg-brand-green text-brand-green group-hover:text-white flex items-center justify-center shrink-0 border border-slate-150 transition-all shadow-sm">
+                  <div className="p-7 bg-white border border-brand-gold/15 rounded-[28px] shadow-luxury-soft hover:shadow-luxury-hover hover:-translate-y-1.5 transition-all duration-500 flex gap-5 items-start group">
+                    <div className="w-11 h-11 rounded-xl bg-[#F6F4EE] group-hover:bg-brand-green text-brand-green group-hover:text-white flex items-center justify-center shrink-0 border border-slate-150 transition-all duration-300 shadow-sm group-hover:scale-110">
                       <FiClock className="text-[17px]" />
                     </div>
                     <div>
@@ -204,7 +204,7 @@ export default function Contact() {
           </div>
 
           {/* Map Section */}
-          <div className="rounded-[32px] overflow-hidden border border-slate-100 shadow-luxury-soft p-2 bg-white h-72 sm:h-[400px] mt-20 lg:mt-24">
+          <div className="rounded-[32px] overflow-hidden border border-slate-100 shadow-luxury-soft p-2 bg-white h-72 sm:h-[400px] mt-20 lg:mt-24 hover:shadow-luxury-depth transition-shadow duration-500">
             <div className="rounded-[24px] overflow-hidden h-full">
               <iframe
                 src={businessInfo.mapEmbed}

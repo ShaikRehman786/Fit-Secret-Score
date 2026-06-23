@@ -103,9 +103,9 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.05, duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-                className="bg-white border border-slate-100 p-8 rounded-[28px] text-center flex flex-col items-center justify-center transition-all duration-400 group shadow-luxury-soft"
+                className="bg-white border border-slate-100 p-8 rounded-[28px] text-center flex flex-col items-center justify-center transition-all duration-500 group shadow-luxury-soft hover:shadow-luxury-hover"
               >
-                <div className="w-12 h-12 rounded-xl bg-brand-green-light text-brand-green flex items-center justify-center mb-5 transition-all duration-300 group-hover:bg-brand-green group-hover:text-white group-hover:shadow-sm">
+                <div className="w-12 h-12 rounded-xl bg-brand-green-light text-brand-green flex items-center justify-center mb-5 transition-all duration-300 group-hover:bg-brand-green group-hover:text-white group-hover:shadow-sm group-hover:scale-110">
                   <stat.icon className="text-xl" />
                 </div>
                 <div className="text-[34px] sm:text-[38px] font-black text-brand-green mb-1 tracking-tight font-heading leading-none">
@@ -203,12 +203,12 @@ export default function About() {
         
         <div className="section-container relative z-10">
           
-          <div className="text-center max-w-2xl mx-auto mb-16 flex flex-col items-center">
+          <div className="text-center max-w-2xl mx-auto mb-20 flex flex-col items-center">
             <span className="text-[10px] font-black tracking-[3px] text-brand-green uppercase bg-brand-green-light px-3.5 py-1.5 rounded-full border border-brand-green-light/40 font-heading mb-3">HISTORICAL PROGRESSION</span>
             <h2 className="text-h2 font-black text-brand-dark font-heading leading-tight tracking-tight">
               The Evolution of Fit Secrets
             </h2>
-            <p className="text-[15.5px] text-brand-gray font-medium leading-relaxed mt-4">
+            <p className="text-[15.5px] text-brand-gray font-medium leading-relaxed mt-5">
               Tracing our steps from a local boutique to Vijayawada's trusted luxury health and wellness destination.
             </p>
           </div>
@@ -227,7 +227,7 @@ export default function About() {
                       <div className="absolute left-[9px] sm:left-1/2 w-4.5 h-4.5 rounded-full bg-brand-gold border-[3.5px] border-[#F8F6F1] ring-[3px] ring-brand-gold/30 -translate-x-1/2 z-10 shadow-sm" />
                       
                       {/* Card layout */}
-                      <div className={`w-full sm:w-[calc(50%-28px)] bg-white p-7 sm:p-8 rounded-[28px] border border-slate-100 shadow-luxury-soft hover:border-brand-green/20 hover:-translate-y-1 transition-all duration-400 ${
+                      <div className={`w-full sm:w-[calc(50%-28px)] bg-white p-7 sm:p-8 rounded-[28px] border border-slate-100 shadow-luxury-soft hover:shadow-luxury-hover hover:border-brand-green/20 hover:-translate-y-1 transition-all duration-500 ${
                         isEven ? 'sm:text-right' : 'sm:text-left'
                       }`}>
                         <span className="inline-block text-[24px] font-black text-brand-green tracking-tight mb-1 font-heading">
@@ -253,12 +253,12 @@ export default function About() {
       <section className="section-spacing-lg bg-white border-b border-slate-100 relative">
         <div className="section-container">
           
-          <div className="text-center max-w-2xl mx-auto mb-16 flex flex-col items-center">
+          <div className="text-center max-w-2xl mx-auto mb-20 flex flex-col items-center">
             <span className="text-[10px] font-black tracking-[3px] text-brand-green uppercase bg-brand-green-light px-3.5 py-1.5 rounded-full border border-brand-green-light/40 font-heading mb-3">OUR CORE FOUNDATIONS</span>
             <h2 className="text-h2 font-black text-brand-dark font-heading leading-tight tracking-tight">
               Values We Refuse to Compromise
             </h2>
-            <p className="text-[15.5px] text-brand-gray font-medium leading-relaxed mt-4">
+            <p className="text-[15.5px] text-brand-gray font-medium leading-relaxed mt-5">
               Building a health brand requires transparency. Here are the core pillars that guide our daily operations.
             </p>
           </div>
@@ -266,10 +266,10 @@ export default function About() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
             {values.map((value, i) => (
               <ScrollReveal key={i} delay={i * 0.06} className="h-full">
-                <div className="luxury-feature-card flex flex-col items-center text-center h-full group">
+                <div className="luxury-feature-card flex flex-col items-center text-center h-full group card-glow-hover">
                   <div className="flex flex-col items-center mb-6">
                     <span className="luxury-feature-number text-[#B68A45] font-black">{value.num}</span>
-                    <div className="w-8 h-8 rounded-full border border-brand-green/10 text-brand-green flex items-center justify-center mt-3 group-hover:bg-brand-green group-hover:text-white group-hover:border-brand-green transition-all duration-300 shadow-sm">
+                    <div className="w-8 h-8 rounded-full border border-brand-green/10 text-brand-green flex items-center justify-center mt-3 group-hover:bg-brand-green group-hover:text-white group-hover:border-brand-green transition-all duration-300 shadow-sm group-hover:scale-110">
                       <FiCheck className="text-xs" />
                     </div>
                   </div>
