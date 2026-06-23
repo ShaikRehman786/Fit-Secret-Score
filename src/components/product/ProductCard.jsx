@@ -37,6 +37,15 @@ function ProductCard({ product, index = 0, onQuickView }) {
     setWishlisted(!wishlisted)
   }
 
+  const handleCardClick = (e) => {
+    const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768
+    if (isMobile) {
+      if (onQuickView) {
+        onQuickView(product)
+      }
+    }
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -44,6 +53,7 @@ function ProductCard({ product, index = 0, onQuickView }) {
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.7, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }}
       className="group luxury-product-card flex flex-col h-full relative"
+      onClick={handleCardClick}
     >
       {/* Dynamic Image Wrapper Container */}
       <div className="luxury-product-image-container aspect-square w-full flex items-center justify-center p-6 relative">
@@ -62,7 +72,10 @@ function ProductCard({ product, index = 0, onQuickView }) {
         </div>
 
         {/* Hover action popup deck */}
-        <div className="absolute inset-0 bg-brand-dark/15 backdrop-blur-[3px] opacity-0 group-hover:opacity-100 transition-all duration-400 flex items-center justify-center gap-3.5 z-20">
+        <div
+          className="absolute inset-0 bg-brand-dark/15 backdrop-blur-[3px] opacity-0 group-hover:opacity-100 transition-all duration-400 flex items-center justify-center gap-3.5 z-20"
+          style={{ pointerEvents: typeof window !== 'undefined' && window.innerWidth <= 768 ? 'none' : 'auto' }}
+        >
           <button
             onClick={(e) => {
               e.preventDefault()
@@ -121,7 +134,7 @@ function ProductCard({ product, index = 0, onQuickView }) {
           )}
         </div>
         
-        <Link to={`/product/${product.id}`}>
+        <Link to={`/product/${product.id}`} onClick={(e) => e.stopPropagation()}>
           <h3 className="font-extrabold text-[15px] text-brand-dark leading-snug hover:text-brand-green transition-colors duration-300 line-clamp-2 min-h-[40px] font-heading">
             {product.name}
           </h3>

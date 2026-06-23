@@ -161,7 +161,7 @@ export default function About() {
                 </div>
               </div>
             </ScrollReveal>
-            
+
             {/* Visual Frame */}
             <ScrollReveal delay={0.12}>
               <div className="relative">
@@ -176,7 +176,7 @@ export default function About() {
                     />
                   </div>
                 </div>
-                
+
                 {/* Float Card */}
                 <motion.div
                   initial={{ opacity: 0, x: -20 }}
