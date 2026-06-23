@@ -542,6 +542,7 @@ function ReviewsSection() {
   )
 }
 
+
 function FeatureCards() {
   return (
     <section className="section-spacing-md bg-white border-t border-slate-100 relative">
@@ -704,7 +705,6 @@ export default function Home() {
       <CategoriesSection />
       <PopularProductsSection onQuickView={openQuickView} />
       <ReviewsSection />
-      <TrustBooster />
       <FeatureCards />
       <CtaBanner />
 
